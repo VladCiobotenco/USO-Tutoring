@@ -3,5 +3,5 @@ Acest repo de Github a fost creat pentru tutoriatul de __Utilizarea sistemelor d
 
 ### De retinut
 - tutoriatul va avea loc in fiecare zi de __MARTI__, in intervalul 18:00 - 20:00
-- sala in care va avea loc cursul este _TO BE COMPLETED_
+- sala in care va avea loc cursul este __LABORATORUL 404__
 - domnul Dragulici este un scump; daca intelegeti principiile de baza treceti lejer
