@@ -76,4 +76,38 @@ int main()
     fclose(g);
 
     return 0;
-}```
+}
+```
+## Parametrii Funcției `main`
+
+Funcția principală `main` poate fi definită pentru a accesa datele transmise programului la momentul executării sale, prin intermediul a trei parametri comuni:
+
+| Parametru | Tip | Nume Oficial | Descriere |
+| :--- | :--- | :--- | :--- |
+| **`int argc`** | `int` | **Argument Count** | Reprezintă **numărul de argumente** primite. Valoarea minimă este **1** (datorită executabilului în sine, ex: `./executabil`). |
+| **`char** argv`** | `char**` | **Argument Vector** | O **matrice de șiruri de caractere** unde fiecare element (`argv[0]` până la `argv[argc-1]`) reprezintă un argument furnizat. |
+| **`char** envp`** | `char**` | **Environment Pointer** | O **matrice de șiruri de caractere** care conține variabilele de mediu (environment) ale sistemului, în formatul `NUME=VALOARE`. |
+
+---
+
+##  Exercițiu
+
+Să se scrie un program în C care:
+1.  Primește exact **10 numere** ca argumente din linia de comandă.
+2.  Calculează **media aritmetică** a acestor numere.
+3.  Afișează rezultatul într-un **fișier de ieșire** (e.g., `rezultat.txt`) creat în directorul curent.
+
+### ⌨️ Exemplu de Rulare
+
+Presupunând că executabilul se numește `media_calc`:
+
+```bash
+# Rulare corectă
+./media_calc 10 20 30 40 50 60 70 80 90 100
+
+# Rezultatul (55.00) va fi scris în 'rezultat.txt'
+```
+# Hint! 
+Puteți folosi funcția [atoi()](https://www.geeksforgeeks.org/c/c-atoi-function/) pentru a realiza conversia din tipul string în tipul int.
+
+
