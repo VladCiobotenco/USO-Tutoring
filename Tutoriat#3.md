@@ -1,6 +1,9 @@
 # TUTORIAT SISTEME DE OPERARE #3
 
-## Librarii
+## Lucrul cu fisiere
+
+
+### Librarii
 
 Pentru manipularea fisierelor este necesar sa includeti aceste librarii (sunt folositoare mereu):
 ```c
@@ -11,7 +14,7 @@ Pentru manipularea fisierelor este necesar sa includeti aceste librarii (sunt fo
 ```
 Daca sunteti curiosi, puteti sa cautati ce contine fiecare librarie si pentru ce este folosita.
 
-## Functii (vechi) pentru manipularea fisierelor
+### Functii (vechi) pentru manipularea fisierelor
 
 O parte din functiile folosite pentru fisiere sunt depasite si nu prea mai sunt folosite decat in scop educational. Cu toate acestea, ele sunt usor de inteles si trebuie sa le cititi pentru primele probleme de la examen (acelea la care vi sa da un cod si se cere ce se afiseaza).
 
@@ -80,7 +83,7 @@ int main()
 
 ---
 
-## Functii (noi) pentru manipularea fisierelor
+### Functii (noi) pentru manipularea fisierelor
 
 Aceste functii sunt ceva mai utilizate deoarece nu folosesc _descriptori de fisiere_, ci folosesc __pointeri la tipul FILE__. O sa dati de aceste functii la cursul de PC1 si la USO, unde o sa le folositi la probleme de laborator si la examen (partea unde trebuie sa scrieti cod).
 
