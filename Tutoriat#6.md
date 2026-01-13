@@ -159,3 +159,64 @@ int main()
     return 0;
 }
 ```
+### Masca de semnale
+```c
+#include <unistd.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <signal.h>
+#include <sys/types.h>
+#include <sys/wait.h>
+#include <bits/types/sigset_t.h>
+#include <asm-generic/signal-defs.h>
+
+void handler1(int sig)
+{
+    printf("Procesul a primit un semnal de tip SIGUSR1\n");
+}
+
+void handler2(int sig){}
+
+int main()
+{
+    signal(SIGUSR1, handler1);
+    signal(SIGUSR2, handler2);
+    
+    sigset_t mascaSemnale;                    //declaram masca de semnale
+    sigemptyset(&mascaSemnale);                //golim masca de semnale din motive sanitare(memorie)
+    sigaddset(&mascaSemnale, SIGUSR1);
+    sigaddset(&mascaSemnale, SIGUSR2);
+    sigprocmask(SIG_SETMASK,&mascaSemnale,0);
+
+    sigemptyset(&mascaSemnale);
+
+    pid_t pid = fork();
+    
+    if(pid==0)
+    {
+        //sigprocmask(SIG_SETMASK,&mascaSemnale,0);
+        pid_t pid_tata = getppid();
+        for(int i=0;i<=9;i++)
+        {
+            if(i%2==1)
+            {
+                kill(pid_tata,SIGUSR1);
+                sigsuspend(&mascaSemnale); 
+            }
+        }
+    }
+    else ///suntem in tata
+    {
+        for(int k=0;k<5;k++)
+        {
+            sigsuspend(&mascaSemnale);
+            kill(pid,SIGUSR2);
+        }
+            
+        wait(NULL);
+    }
+
+    return 0;
+
+}
+```
