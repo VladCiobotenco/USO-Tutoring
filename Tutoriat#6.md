@@ -111,3 +111,51 @@ int main()
 }
 ```
 Observatii: functia `getppid()` returneaza pid-ul tatalui (daca ne aflam intr-un copil);
+
+### Sigaction
+
+```c
+#include <stdio.h>
+#include <unistd.h>
+#include <stdlib.h>
+#include <sys/types.h>
+#include <signal.h>
+#include <setjmp.h>
+#include <sys/wait.h>
+
+int d[2],k;
+jmp_buf env;
+void h(int n)
+{
+    ++k;
+    write(d[1],&k,sizeof(int));
+    siglongjmp(env,k);
+}
+
+int main()
+{
+    struct sigaction sa;
+    sa.sa_handler=h;
+    sigemptyset(&sa.sa_mask);
+    sa.sa_flags=0;
+    for(k=NSIG-1;k;--k)
+        sigaction(k,&sa,NULL);
+    pipe(d);
+
+    if(!sigsetjmp(env,k) && !fork() && !sigsetjmp(env,k) &&!fork())
+    {
+        close(d[1]);
+        read(d[0],&k,sizeof(int));
+    }
+    else
+    {
+        close(d[0]);
+        ++k;
+        write(d[1],&k,sizeof(int));
+    }
+
+    while(wait(NULL)!=-1);
+    printf("%d\n",k);
+    return 0;
+}
+```
